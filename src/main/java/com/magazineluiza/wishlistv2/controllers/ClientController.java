@@ -1,6 +1,7 @@
 package com.magazineluiza.wishlistv2.controllers;
 
 import com.magazineluiza.wishlistv2.domain.entity.Client;
+import com.magazineluiza.wishlistv2.repository.ClientRespository;
 import com.magazineluiza.wishlistv2.service.ClientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class ClientController {
     return clientService.create(client);
   }
 
-  @GetMapping(value = "/{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<Client> getClientById(@PathVariable(value = "id") long id) {
     Client client = clientService.getClientById(id);
     if (client != null) {
@@ -40,7 +41,7 @@ public class ClientController {
     }
   }
 
-  @DeleteMapping(value = "/{id}")
+  @DeleteMapping("/{id}")
   public ResponseEntity<Object> deleteClientById(@PathVariable(value = "id") long id) {
     try {
       Boolean deletedClient = clientService.deleteClientById(id);
@@ -54,7 +55,7 @@ public class ClientController {
     }
   }
 
-  @PutMapping(value = "/{id}")
+  @PutMapping("/{id}")
   public ResponseEntity<Client> updateClientById(@PathVariable(value = "id") long id,
       @RequestBody Client cliente) {
     Client client = clientService.updateClientById(id, cliente);

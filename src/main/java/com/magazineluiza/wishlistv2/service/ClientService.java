@@ -18,7 +18,11 @@ public class ClientService implements IClientService {
   @Override
   public Client getClientById(Long id) {
     Optional<Client> cliente = clientRespository.findById(id);
-    return cliente.orElse(null);
+    if (cliente.isPresent()) {
+      return cliente.get();
+    } else {
+      return null;
+    }
   }
 
   @Override

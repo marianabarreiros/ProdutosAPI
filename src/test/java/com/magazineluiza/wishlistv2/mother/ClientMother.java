@@ -5,8 +5,7 @@ import java.util.Collections;
 
 public class ClientMother {
 
-  public static Client createClient(){
+  public static Client createClient() {
     return new Client(1L, "Mariana", "Barreiros", 12345678L, Collections.EMPTY_SET);
   }
-
 }
