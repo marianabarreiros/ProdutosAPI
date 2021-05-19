@@ -2,6 +2,7 @@ package com.magazineluiza.wishlistv2.service;
 
 import com.magazineluiza.wishlistv2.domain.entity.Client;
 import com.magazineluiza.wishlistv2.domain.entity.Product;
+import com.magazineluiza.wishlistv2.repository.ClientRespository;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,9 @@ public class WishlistService implements IWishlistService {
 
   @Autowired
   private ClientService clientService;
+
+  @Autowired
+  private ClientRespository clientRespository;
 
   @Autowired
   private ProductService productService;
@@ -25,7 +29,7 @@ public class WishlistService implements IWishlistService {
     if (client != null) {
       Product product = productService.getProductById(idProduto);
       client.adicionarProduto(product);
-      return clientService.create(client);
+      return clientRespository.save(client);
     }
     return null;
   }

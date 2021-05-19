@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cliente")
@@ -25,7 +26,7 @@ public class Client {
   private String nome;
   private String sobrenome;
   @Column(unique = true)
-  private String cpf;
+  private Long cpf;
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinTable(name = "wishlist",
       joinColumns = @JoinColumn(name = "id_cliente"),
@@ -37,7 +38,7 @@ public class Client {
 
   }
 
-  public Client(Long id, String nome, String sobrenome, String cpf, Set<Product> produtos) {
+  public Client(Long id, String nome, String sobrenome, Long cpf, Set<Product> produtos) {
     this.id = id;
     this.nome = nome;
     this.sobrenome = sobrenome;
@@ -81,11 +82,11 @@ public class Client {
     this.sobrenome = sobrenome;
   }
 
-  public String getCpf() {
+  public Long getCpf() {
     return cpf;
   }
 
-  public void setCpf(String cpf) {
+  public void setCpf(Long cpf) {
     this.cpf = cpf;
   }
 }
