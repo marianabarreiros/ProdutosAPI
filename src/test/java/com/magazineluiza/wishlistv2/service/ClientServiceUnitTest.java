@@ -26,19 +26,19 @@ public class ClientServiceUnitTest {
 
   @Test
   void givenAValidClientWhenCreateThenReturnEntityClient() {
-    Client client = createClient();
+    Client clientRequest = createClient();
 
-    given(clientRespository.save(client)).willReturn(client);
+    given(clientRespository.save(clientRequest)).willReturn(clientRequest);
 
-    Client client1 = clientService.create(client);
+    Client clientResponse = clientService.create(clientRequest);
 
-    then(client1.getCpf()).isEqualTo(client.getCpf());
-    then(client1.getId()).isEqualTo(client.getId());
-    then(client1.getProdutos()).isEqualTo(client.getProdutos());
-    then(client1.getNome()).isEqualTo(client.getNome());
-    then(client1.getSobrenome()).isEqualTo(client.getSobrenome());
+    then(clientResponse.getCpf()).isEqualTo(clientRequest.getCpf());
+    then(clientResponse.getId()).isEqualTo(clientRequest.getId());
+    then(clientResponse.getProdutos()).isEqualTo(clientRequest.getProdutos());
+    then(clientResponse.getNome()).isEqualTo(clientRequest.getNome());
+    then(clientResponse.getSobrenome()).isEqualTo(clientRequest.getSobrenome());
 
-    verify(clientService, times(1)).create(client);
+    verify(clientService, times(1)).create(clientRequest);
   }
 
   @Test
@@ -50,6 +50,4 @@ public class ClientServiceUnitTest {
 
     then(clientRespository.findById(2L)).isEmpty();
   }
-  
-
 }
